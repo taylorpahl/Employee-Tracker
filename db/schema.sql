@@ -5,7 +5,7 @@ USE employees_db;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCEREMENT PRIMARY KEY,
-    name VARCHAR(30)
+    dept_name VARCHAR(30)
 );
 
 CREATE TABLE employee_role (
@@ -13,7 +13,7 @@ CREATE TABLE employee_role (
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
-    REFERENCES department(id)
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
 CREATE TABLE employee (
@@ -22,7 +22,7 @@ CREATE TABLE employee (
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     manager_id INT,
-    FOREIGN KEY (manager_id),
-    REFERENCES employee_role(id),
+    FOREIGN KEY (role_id) REFERENCES employee_role(id),
+    FOREIGN KEY (manager_id) REFERENCES employee_role(title),
     ON DELETE SET NULL
 );
